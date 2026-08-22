@@ -31,17 +31,25 @@ This pipeline takes raw paired-end FASTQ files and generates read alignments, ge
 
 ### 1. Clone the repository
 ```bash
-git clone [https://github.com/yourusername/your-repo-name.git](https://github.com/yourusername/your-repo-name.git)
+# Clone this repository to your local machine
+git clone https://github.com/yourusername/your-repo-name.git
 cd your-repo-name
+```
 
 ### 2. Set up the environment
-    Bash
+```bash
+# Create and activate the conda environment
 conda env create -f environment.yml
 conda activate ngs_pipeline
-3. Configure your run
-Update config/config.yaml and config/samples.csv according to the Execution Guide.
+```
+
+### 3. Configure your run
+Update `config/config.yaml` and `config/samples.csv` according to the **[Execution Guide](instructions.md)**.
 
 ### 4. Execute the pipeline
-    Bash
+```bash
+# Run the pipeline providing the absolute Linux path to your raw FASTQ files
 python Pipeline.py --input /absolute/linux/path/to/fastq_folder
-💡 Note: Output files, logs, and plots are safely isolated and dynamically saved in automatically generated runs/dataset_X/ directories. Your previous runs will never be overwritten.
+```
+
+> **💡 Note:** Output files, logs, and plots are safely isolated and dynamically saved in automatically generated `runs/dataset_X/` directories. Your previous runs will never be overwritten.
