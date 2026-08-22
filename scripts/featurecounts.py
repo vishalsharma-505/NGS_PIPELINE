@@ -12,11 +12,12 @@ def feature_counts(config,run_dir) :
         raise FileNotFoundError("No BAM files found")
     
     output_file = count_dir/ 'gene_counts.txt'
-    
+    strandedness = str(config.get("strandedness", 0))
     command =[
         "featureCounts" ,
         "-T", str(config["threads"]),
         "-p",
+        "-s", strandedness,
         "-a", str(config["reference"]["gtf"]),
         "-o", str(output_file)
     ]
