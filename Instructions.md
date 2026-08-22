@@ -16,10 +16,10 @@ This pipeline is resource-intensive. Ensure your system meets these requirements
 
 *   **RAM & Swap Memory:** A minimum of **16GB physical RAM** is strictly required. Furthermore, it is highly recommended to increase your Linux Swap Memory by at least 8GB to 16GB. The HISAT2 indexing and alignment steps consume massive memory spikes; without enough swap/RAM, the Linux OOM (Out of Memory) killer will terminate the pipeline silently.
 *   **Disk Space:** Ensure you have at least 50GB-100GB of free disk space. Intermediate BAM files and indices are large.
-*   **Thread Allocation (Avoid Crashes):** 
-    *   Do **NOT** set the `threads` parameter in `config.yaml` to your maximum available CPU cores. 
-    *   *Why?* The pipeline uses piped processes (`hisat2 | samtools view | samtools sort`) to save disk space. This means HISAT2 and Samtools are running **simultaneously**. 
-    *   *Example:* If you have an 8-core machine and set `threads: 8`, HISAT2 will try to use 8 cores, and Samtools will try to use 8 cores at the exact same time, causing severe CPU bottlenecking and potential crashes. **Sensible usage: Set threads to half of your total cores (e.g., `threads: 4` on an 8-core system).**
+*   **Thread Allocation (Avoid CPU Bottlenecks):** 
+    *   The pipeline uses piped processes (`hisat2 | samtools view | samtools sort`) to save disk space. This means HISAT2 and Samtools run **simultaneously**. 
+    *   **For CPUs WITH Multithreading/Hyperthreading (e.g., 8 cores / 16 threads):** You can safely set the `threads` parameter in `config.yaml` to your physical core count (e.g., `threads: 8`). The 16 available logical threads will easily handle the concurrent processes.
+    *   **For CPUs WITHOUT Multithreading (e.g., 8 cores / 8 threads):** Set `threads` to **half** of your total cores (e.g., `threads: 4`). If you set it to 8, HISAT2 and Samtools will fight for the same 8 threads simultaneously, causing severe bottlenecking and potential crashes.
 
 ## ⚙️ 3. Configuration (`config.yaml`) Setup
 Edit `config/config.yaml` to match your run parameters:
