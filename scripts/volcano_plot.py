@@ -25,10 +25,10 @@ def plot_volcano(results, run_dir):
     ].copy()
 
     volcano_data = volcano_data.dropna()
+    
 
-    volcano_data = volcano_data[
-        volcano_data["padj"] > 0
-    ]
+
+    volcano_data["padj"] = volcano_data["padj"].replace(0, 1e-300)
 
     volcano_data["neg_log10_padj"] = -np.log10(
         volcano_data["padj"]
