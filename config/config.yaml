@@ -6,5 +6,5 @@ reference :
   gtf : "reference/genome/gencode.v50.primary_assembly.annotation.gtf"
   hisat2_index : "reference/index/grch38"
 metadata : "config/samples.csv"
-
+strandedness : 0  # 0 = unstranded, 1 = forward stranded, 2 = reverse stranded
 
