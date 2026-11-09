@@ -6,7 +6,7 @@
 ---
 
 > ⚠️ **CRITICAL WARNING:**
-> This pipeline is highly resource-intensive. Execution time varies significantly based on your hardware, total sample count, and sequencing depth. To avoid mid-run crashes, OOM (Out of Memory) kills, or silent data loss, you **MUST** read the full [Execution Guide (instructions.md)](instructions.md) before setting up your data and config.
+> This pipeline is highly resource-intensive. Execution time varies significantly based on your hardware, total sample count, and sequencing depth. To avoid mid-run crashes, OOM (Out of Memory) kills, or silent data loss, you **MUST** read the full [Execution Guide (instructions.md)](Instructions.md) before setting up your data and config.
 
 ## ⚡ Pipeline Workflow
 
